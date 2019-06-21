@@ -1,15 +1,31 @@
 const express = require('express')
 const path = require('path')
 const PORT = process.env.PORT || 5000
+const bodyParser = require('body-parser')
 
+const jsonParser = bodyParser.json()
 
 express()
   .use(express.static(path.join(__dirname, 'public')))
+  .use(bodyParser.urlencoded({extended: false}))
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
-  .get('/getRate', function(req, res) {
-    res.render('pages/rate')
-    })
+  .get('/getRate', jsonParser, function(req, res) {
+
+    price_param = {total: 0};
+
+    res.render('pages/rate', price_param);
+  })
+  .post('/getRate', jsonParser, function(req, res) {
+    const mail_type = req.body.mail_type;
+    const weight = req.body.weight;
+
+    const price = calculateRate(mail_type, weight);
+
+    var price_param = {total: price};
+
+    res.render('pages/rate', price_param);
+  })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 
@@ -19,6 +35,9 @@ express()
                                      2.35, 2.50, 2.65, 2.80]; // total 13
   const first_class_package_rates = [3.66, 4.39, 5.19, 5.71]; // total 4
   function calculateRate(mail_type, weight) {
+    if (weight <= 0)
+      return -1;
+
   	if (mail_type == "letters_stamped") {
   		if      (weight <= 1)   return letters_stamped_rates[0];
   		else if (weight <= 2)   return letters_stamped_rates[1];
@@ -50,5 +69,5 @@ express()
   		else if (weight <= 13)  return first_class_package_rates[3];
   	}
 
-  	return -1;
+    return -1;
   }
