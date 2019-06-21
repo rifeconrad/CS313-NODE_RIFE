@@ -43,7 +43,7 @@ express()
   		else if (weight <= 11)  return large_envelope_rates[10];
   		else if (weight <= 12)  return large_envelope_rates[11];
   		else if (weight <= 13)  return large_envelope_rates[12];
-  	} else if (mail_type == "first_class") {
+  	} else if (mail_type == "package") {
   		if      (weight <= 4)   return first_class_package_rates[0];
   		else if (weight <= 8)   return first_class_package_rates[1];
   		else if (weight <= 12)  return first_class_package_rates[2];

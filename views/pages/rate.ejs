@@ -6,10 +6,12 @@
 <body>
 	<h1>Postal Rate Calculator</h1>
 	<form name="postal_rate_input" action="get">
-		<input type="radio" name="mail_type">Letters (Stamped)<br>
-		<input type="radio" name="mail_type">Letters (Metered)<br>
-		<input type="radio" name="mail_type">Large Envelopes (Flats)<br>
-		<input type="radio" name="mail_type">First-Class Package Service—Retail<br>
+		<select name="mail_type">
+		  <option value="letters_stamped">Letters (Stamped)</option>
+		  <option value="letters_metered">Letters (Metered)</option>
+		  <option value="large_envelope">Large Envelopes (Flats)</option>
+		  <option value="package">First-Class Package Service—Retail</option>
+		</select>
 		<input type="text" name="weight" maxlength="3" placeholder="weight"></input><br>
 		<button type="submit">Calculate</button>
 	</form>
