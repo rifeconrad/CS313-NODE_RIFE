@@ -5,13 +5,13 @@
 </head>
 <body>
 	<h1>Postal Rate Calculator</h1>
-	<form name="postal_rate_input" action="get">
+	<form name="postal_rate_input" method="get">
 		<select name="mail_type">
 		  <option value="letters_stamped">Letters (Stamped)</option>
 		  <option value="letters_metered">Letters (Metered)</option>
 		  <option value="large_envelope">Large Envelopes (Flats)</option>
 		  <option value="package">First-Class Package Service—Retail</option>
-		</select>
+		</select><br>
 		<input type="text" name="weight" maxlength="3" placeholder="weight"></input><br>
 		<button type="submit">Calculate</button>
 	</form>
