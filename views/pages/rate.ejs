@@ -16,6 +16,6 @@
 		<button type="submit">Calculate</button>
 	</form>
 
-	<h1><%= (total == -1) ? "invalid weight" : "Price: $" + total %></h1>
+	<h1><%= (total == -1) ? "invalid weight" : "Price: $" + total.toFixed(2) %></h1>
 </body>
 </html>
